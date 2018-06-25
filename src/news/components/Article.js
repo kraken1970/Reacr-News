@@ -4,12 +4,6 @@ import CommentList from "./CommentList";
 import toggleOpen from "../decorators/toggleOpen";
 
 class Article extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     isOpen: true
-  //   };
-  // }
   static propTypes = {
     article: PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -32,7 +26,6 @@ class Article extends Component {
   getBody() {
     const { article, isOpen } = this.props;
     if (!isOpen) return null;
-
     return (
       <section>
         {article.text}
