@@ -12,15 +12,32 @@ class Article extends Component {
     }).isRequired //isRequired - обязательное поле
   };
 
+  componentWillReceiveProps(nextProps) {
+    console.log("---", "updating", this.props.isOpen, nextProps.isOpen);
+  }
+
+  componentWillMount() {
+    console.log("---", "mounting");
+  }
+
   render() {
     const { article, isOpen, toggleOpen } = this.props;
     return (
-      <div>
-        <h2>{article.title}</h2>
+      <div ref={this.setContainerRef}>
+        <h2>{article.title}!!!!!</h2>
         <button onClick={toggleOpen}>{isOpen ? "close" : "open"}</button>
         {this.getBody()}
       </div>
     );
+  }
+
+  setContainerRef = ref => {
+    this.container = ref;
+    console.log("---", ref);
+  };
+
+  componentDidMount() {
+    console.log("---", "mounted");
   }
 
   getBody() {
