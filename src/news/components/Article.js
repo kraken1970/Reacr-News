@@ -1,17 +1,21 @@
 import React, { Component } from "react";
-import { findDOMNode } from "react-dom";
+// import { findDOMNode } from "react-dom";
 import PropTypes from "prop-types";
 import CommentList from "./CommentList";
 
 class Article extends Component {
   static propTypes = {
     article: PropTypes.shape({
-      id: PropTypes.string.isRequired,//isRequired - обязательное поле
+      id: PropTypes.string.isRequired, //isRequired - обязательное поле
       title: PropTypes.string.isRequired,
       text: PropTypes.string
     }).isRequired,
     isOpen: PropTypes.bool,
     toggleOpen: PropTypes.func
+  };
+
+  state = {
+    updateIndex: 0
   };
 
   componentWillReceiveProps(nextProps) {
@@ -48,13 +52,24 @@ class Article extends Component {
     return (
       <section>
         {article.text}
-        <CommentList comments={article.comments} ref={this.setCommentRef} />
+        <button
+          onClick={() =>
+            this.setState({ updateIndex: this.state.updateIndex + 1 })
+          }
+        >
+          update
+        </button>
+        <CommentList
+          comments={article.comments}
+          ref={this.setCommentRef}
+          key={this.state.updateIndex}
+        />
       </section>
     );
   }
 
   setCommentRef = ref => {
-    console.log("---", findDOMNode(ref));
+    console.log("---", ref);
   };
 }
 

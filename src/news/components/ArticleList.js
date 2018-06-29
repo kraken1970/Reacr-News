@@ -8,10 +8,10 @@ class ArticleList extends Component {
     articles: PropTypes.array.isRequired,
     //from accordion
     openItemId: PropTypes.string,
-    toggleOpen: PropTypes.func.isRequired
-  }
+    toggleOpen: PropTypes.func
+  };
   render() {
-    const {articles, openItemId, toggleOpenItem} = this.props
+    const { articles, openItemId, toggleOpenItem } = this.props;
     const articleElements = articles.map(article => (
       <li key={article.id}>
         <Article
@@ -25,4 +25,4 @@ class ArticleList extends Component {
   }
 }
 
-export default accordion(ArticleList)
+export default accordion(ArticleList);

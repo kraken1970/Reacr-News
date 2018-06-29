@@ -5,12 +5,14 @@ export default OriginalComponent =>
     state = {
       isOpen: true
     };
+
     render() {
       return (
         <OriginalComponent
           {...this.props}
           {...this.state}
           toggleOpen={this.toggleOpen}
+          ref={this.getRef}
         />
       );
     }
@@ -19,5 +21,9 @@ export default OriginalComponent =>
       this.setState({
         isOpen: !this.state.isOpen
       });
+    };
+
+    getRef = ref => {
+      console.log("---", ref);
     };
   };

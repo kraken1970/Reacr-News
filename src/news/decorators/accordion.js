@@ -1,5 +1,5 @@
 //HT 2
-import React, { Component } from "react";
+import React from "react";
 
 export default Component =>
   class Accordion extends React.Component {
