@@ -2,15 +2,16 @@ import React, { Component } from "react";
 import { findDOMNode } from "react-dom";
 import PropTypes from "prop-types";
 import CommentList from "./CommentList";
-// import toggleOpen from "../decorators/toggleOpen";
 
 class Article extends Component {
   static propTypes = {
     article: PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,//isRequired - обязательное поле
       title: PropTypes.string.isRequired,
       text: PropTypes.string
-    }).isRequired //isRequired - обязательное поле
+    }).isRequired,
+    isOpen: PropTypes.bool,
+    toggleOpen: PropTypes.func
   };
 
   componentWillReceiveProps(nextProps) {
@@ -25,7 +26,7 @@ class Article extends Component {
     const { article, isOpen, toggleOpen } = this.props;
     return (
       <div ref={this.setContainerRef}>
-        <h2>{article.title}!!!!!</h2>
+        <h2>{article.title}</h2>
         <button onClick={toggleOpen}>{isOpen ? "close" : "open"}</button>
         {this.getBody()}
       </div>
