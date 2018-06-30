@@ -24,6 +24,6 @@ export default OriginalComponent =>
     };
 
     getRef = ref => {
-      console.log("---", ref);
+      // console.log("---", ref);
     };
   };

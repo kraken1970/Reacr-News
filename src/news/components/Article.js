@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, PureComponent } from "react";
 // import { findDOMNode } from "react-dom";
 import PropTypes from "prop-types";
 import CommentList from "./CommentList";
 
-class Article extends Component {
+class Article extends PureComponent {
   static propTypes = {
     article: PropTypes.shape({
       id: PropTypes.string.isRequired, //isRequired - обязательное поле
@@ -18,16 +18,13 @@ class Article extends Component {
     updateIndex: 0
   };
 
-  componentWillReceiveProps(nextProps) {
-    console.log("---", "updating", this.props.isOpen, nextProps.isOpen);
-  }
-
-  componentWillMount() {
-    console.log("---", "mounting");
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return nextProps.isOpen !== this.props.isOpen;
+  // }
 
   render() {
     const { article, isOpen, toggleOpen } = this.props;
+    console.log("---", "update article");
     return (
       <div ref={this.setContainerRef}>
         <h2>{article.title}</h2>
@@ -39,12 +36,8 @@ class Article extends Component {
 
   setContainerRef = ref => {
     this.container = ref;
-    console.log("---", ref);
+    // console.log("---", ref);
   };
-
-  componentDidMount() {
-    console.log("---", "mounted");
-  }
 
   getBody() {
     const { article, isOpen } = this.props;
@@ -52,13 +45,16 @@ class Article extends Component {
     return (
       <section>
         {article.text}
-        <button
-          onClick={() =>
-            this.setState({ updateIndex: this.state.updateIndex + 1 })
-          }
-        >
-          update
-        </button>
+        <p>
+          <button
+            onClick={() =>
+              this.setState({ updateIndex: this.state.updateIndex + 1 })
+            }
+          >
+            update
+          </button>
+        </p>
+
         <CommentList
           comments={article.comments}
           ref={this.setCommentRef}
@@ -69,7 +65,7 @@ class Article extends Component {
   }
 
   setCommentRef = ref => {
-    console.log("---", ref);
+    // console.log("---", ref);
   };
 }
 
