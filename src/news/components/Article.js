@@ -2,6 +2,8 @@ import React, { Component, PureComponent } from "react";
 // import { findDOMNode } from "react-dom";
 import PropTypes from "prop-types";
 import CommentList from "./CommentList";
+import { CSSTransitionGroup } from "react-transition-group";
+// import "../Css/article.css";подключил в app.css
 
 class Article extends PureComponent {
   static propTypes = {
@@ -24,12 +26,18 @@ class Article extends PureComponent {
 
   render() {
     const { article, isOpen, toggleOpen } = this.props;
-    console.log("---", "update article");
+
     return (
       <div ref={this.setContainerRef}>
         <h2>{article.title}</h2>
         <button onClick={toggleOpen}>{isOpen ? "close" : "open"}</button>
-        {this.getBody()}
+        <CSSTransitionGroup
+          transitionName="article"
+          transitionEnterTimeout={300}
+          transitionLeaveTimeout={500}
+        >
+          {this.getBody()}
+        </CSSTransitionGroup>
       </div>
     );
   }

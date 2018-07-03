@@ -15,12 +15,13 @@ class UserForm extends Component {
         <input
           type="text"
           value={this.state.username}
-          onChange={this.handleUserChange}
+          onChange={this.handleUserChange} // паттерн 'Обратный поток данных'
         />
       </div>
     );
   }
   handleUserChange = ev => {
+    if (ev.target.value.length > 10) return;
     this.setState({
       username: ev.target.value
     });
