@@ -1,8 +1,9 @@
-@import "news/Css/article.pcss";
+@import "../node_modules/react-day-picker/lib/style.css";
 
 .App {
   text-align: center;
 }
+
 .bigClass {
   margin-top: 10px;
   margin-left: 10px;

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import DayPicker from "react-day-picker";
-import { DateUtils } from "react-day-picker";
+import DayPicker, { DateUtils } from "react-day-picker";
+
 import "react-day-picker/lib/style.css";
 
-class SelectFilter extends Component {
+class DateRange extends Component {
   state = {
     from: null,
     to: null
@@ -22,6 +22,7 @@ class SelectFilter extends Component {
         <DayPicker
           ref="daypicker"
           selectedDays={day => DateUtils.isDayInRange(day, { from, to })}
+          onDayClick={this.handleDayClick}
         />
         {selectRange}
       </div>
@@ -29,4 +30,4 @@ class SelectFilter extends Component {
   }
 }
 
-export default SelectFilter;
+export default DateRange;

@@ -10,25 +10,26 @@ import "./App.css";
 
 class App extends Component {
   static propTypes = {};
-  state = {
-    selection: null
-  };
+  // state = {
+  //   selection: null
+  // };
 
   render() {
-    const options = articles.map(article => ({
-      label: article.title,
-      value: article.id
-    }));
+    // const { articles } = this.props;
+    // const options = articles.map(article => ({
+    //   label: article.title,
+    //   value: article.id
+    // }));
     return (
       <div className="bigClass">
         <UserForm />
         <Filters articles={articles} />
-        <ArticleList articles={articles} />;
+        <ArticleList articles={articles} />
         <ArticlesChart articles={this.props.articles} />
       </div>
     );
   }
-  changeSelection = selection => this.setState({ selection });
+  // changeSelection = selection => this.setState({ selection });
 }
 
 export default App;
