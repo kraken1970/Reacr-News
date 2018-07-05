@@ -1,31 +1,24 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ArticleList from "./news/components/ArticleList";
-import ArticlesChart from "./news/components/ArticlesChart";
+// import ArticlesChart from "./news/components/ArticlesChart";
 import UserForm from "./news/components/UserForm";
-import Select from "react-select";
+// import Select from "react-select";
 import Filters from "./news/components/Filters";
+import Counter from "./news/components/Counter";
 import { articles } from "./news/fixtures";
 import "./App.css";
 
 class App extends Component {
   static propTypes = {};
-  // state = {
-  //   selection: null
-  // };
 
   render() {
-    // const { articles } = this.props;
-    // const options = articles.map(article => ({
-    //   label: article.title,
-    //   value: article.id
-    // }));
     return (
       <div className="bigClass">
+        <Counter />
         <UserForm />
-        <Filters articles={articles} />
-        <ArticleList articles={articles} />
-        <ArticlesChart articles={this.props.articles} />
+        <Filters articles={[]} />
+        <ArticleList />
       </div>
     );
   }

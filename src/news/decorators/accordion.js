@@ -3,9 +3,12 @@ import React from "react";
 
 export default Component =>
   class Accordion extends React.Component {
-    state = {
-      openItemId: null
-    };
+    constructor(props) {
+      super(props);
+      this.state = {
+        openItemId: props.defaultOpenId
+      };
+    }
 
     render() {
       return (

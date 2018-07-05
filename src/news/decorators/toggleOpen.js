@@ -3,7 +3,7 @@ import React, { Component as ReactComponent } from "react";
 export default OriginalComponent =>
   class WrappedComponent extends ReactComponent {
     state = {
-      isOpen: true
+      isOpen: false
     };
 
     render() {
@@ -16,6 +16,7 @@ export default OriginalComponent =>
         />
       );
     }
+
     toggleOpen = ev => {
       ev && ev.preventDefault && ev.preventDefault();
       this.setState({
@@ -24,6 +25,6 @@ export default OriginalComponent =>
     };
 
     getRef = ref => {
-      // console.log("---", ref);
+      //   console.log('---', ref)
     };
   };
