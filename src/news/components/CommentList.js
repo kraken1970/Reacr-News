@@ -23,18 +23,20 @@ CommentList.propTypes = {
 
 function getBody({ comments, isOpen }) {
   if (!isOpen) return null;
-  if (!comments.length) return;
-  <div>
-    <p>No comments yet</p>
-    <CommentForm />
-  </div>;
+  if (!comments.length)
+    return (
+      <div>
+        <p>No comments yet</p>
+        <CommentForm />
+      </div>
+    );
 
   return (
     <div>
       <ul>
-        {comments.map(comment => (
-          <li key={comment.id}>
-            <Comment comment={comment} />
+        {comments.map(id => (
+          <li key={id}>
+            <Comment id={id} />
           </li>
         ))}
       </ul>

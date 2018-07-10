@@ -65,16 +65,13 @@ class Article extends PureComponent {
     return (
       <section>
         {article.text}
-        <p>
-          <button
-            onClick={() =>
-              this.setState({ updateIndex: this.state.updateIndex + 1 })
-            }
-          >
-            update
-          </button>
-        </p>
-
+        <button
+          onClick={() =>
+            this.setState({ updateIndex: this.state.updateIndex + 1 })
+          }
+        >
+          update
+        </button>
         <CommentList
           comments={article.comments}
           ref={this.setCommentRef}
