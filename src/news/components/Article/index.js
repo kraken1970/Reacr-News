@@ -73,15 +73,15 @@ class Article extends PureComponent {
           update
         </button>
         <CommentList
-          comments={article.comments}
-          ref={this.setCommentRef}
+          article={article}
+          ref={this.setCommentsRef}
           key={this.state.updateIndex}
         />
       </section>
     );
   }
 
-  setCommentRef = ref => {
+  setCommentsRef = ref => {
     // console.log("---", ref);
   };
 }

@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { addComment } from "../../AC";
 import "./style.css";
 
 class CommentForm extends Component {
-  static propTypes = {};
+  static propTypes = {
+    articleId: PropTypes.string.isRequired,
+    addComment: PropTypes.func.isRequired
+  };
 
   state = {
     user: "",
@@ -32,7 +37,7 @@ class CommentForm extends Component {
 
   handleSubmit = ev => {
     ev.preventDefault();
-    // this.props.addComment(this.state); добавлено из финальной версии
+    this.props.addComment(this.state);
     this.setState({
       user: "",
       text: ""
@@ -64,4 +69,9 @@ const limits = {
   }
 };
 
-export default CommentForm;
+export default connect(
+  null,
+  (dispatch, ownProps) => ({
+    addComment: comment => dispatch(addComment(comment, ownProps.articleId))
+  })
+)(CommentForm);
