@@ -4,5 +4,6 @@ export default store => next => action => {
 
   fetch(callAPI)
     .then(res => res.json())
-    .then(response => next({ ...action, response }));
+    .then(response => next({ ...action, response }))
+    .catch(e => console.log(e)); //Исправил Славка
 };
