@@ -25,6 +25,7 @@ class ArticleList extends Component {
     console.log("---", "update article list");
     const { articles, openItemId, toggleOpenItem, loading } = this.props;
     if (loading) return <Loader />;
+    // l6 1:18:26
     const articleElements = articles.map(article => (
       <li key={article.id}>
         <Article
