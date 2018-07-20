@@ -25,7 +25,7 @@ export default (filters = defaultFilter, action) => {
     case DELETE_ARTICLE:
       return {
         ...filters,
-        selected: filters.selected.filtewr(id => id !== payload.id)
+        selected: filters.selected.filter(id => id !== payload.id)
       };
   }
 

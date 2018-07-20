@@ -1,11 +1,18 @@
+import { START, SUCCESS, FAIL } from "../constans";
+
 export default store => next => action => {
-  const { callAPI } = action;
+  const { callAPI, type, ...rest } = action;
   if (!callAPI) return next(action);
+
+  next({
+    ...rest,
+    type: type + START
+  });
 
   setTimeout(() => {
     fetch(callAPI)
       .then(res => res.json())
-      .then(response => next({ ...action, response }))
-      .catch(e => console.log(e)); //Исправил Славка
+      .then(response => next({ ...rest, type: type + SUCCESS, response }))
+      .catch(error => next({ ...rest, type: type + FAIL, error })); //Исправил Славка
   }, 1000);
 };
