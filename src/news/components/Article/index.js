@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import CommentList from "../CommentList";
 import { CSSTransitionGroup } from "react-transition-group";
-import { deleteArticle } from "../../AC";
+import { deleteArticle, loadArticle } from "../../AC";
+import Loader from "../Loader";
 import "./style.css";
 
 class Article extends PureComponent {
@@ -21,6 +22,10 @@ class Article extends PureComponent {
   state = {
     updateIndex: 0
   };
+
+  componentWillReceiveProps({ isOpen, loadArticle, article }) {
+    if (isOpen && !article.text && !article.loading) loadArticle(article.id);
+  }
 
   // shouldComponentUpdate(nextProps, nextState) {
   //   return nextProps.isOpen !== this.props.isOpen;
@@ -62,6 +67,7 @@ class Article extends PureComponent {
   getBody() {
     const { article, isOpen } = this.props;
     if (!isOpen) return null;
+    if (article.loading) return <Loader />;
     return (
       <section>
         {article.text}
@@ -88,5 +94,5 @@ class Article extends PureComponent {
 
 export default connect(
   null,
-  { deleteArticle }
+  { deleteArticle, loadArticle }
 )(Article);
