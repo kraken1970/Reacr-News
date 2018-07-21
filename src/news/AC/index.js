@@ -8,7 +8,8 @@ import {
   LOAD_ARTICLE,
   START,
   SUCCESS,
-  FAIL
+  FAIL,
+  LOAD_ARTICLE_COMMENTS
 } from "../constans";
 
 // import { callAPI } from "../middlewars/api";
@@ -52,6 +53,14 @@ export function loadAllArticles() {
   return {
     type: LOAD_ALL_ARTICLES,
     callAPI: "/api/article"
+  };
+}
+
+export function loadArticleComments(articleId) {
+  return {
+    type: LOAD_ARTICLE_COMMENTS,
+    payload: { articleId },
+    callAPI: `/api/comment?article=${articleId}`
   };
 }
 
