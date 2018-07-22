@@ -6,7 +6,7 @@ import UserForm from "./news/components/UserForm";
 // import Select from "react-select";
 import Filters from "./news/components/Filters";
 import Counter from "./news/components/Counter";
-import { articles } from "./news/fixtures";
+import { HashRouter as Router, Route, NavLink } from "react-router-dom";
 import "./App.css";
 
 class App extends Component {
@@ -14,12 +14,32 @@ class App extends Component {
 
   render() {
     return (
-      <div className="bigClass">
-        <Counter />
-        <UserForm />
-        <Filters articles={[]} />
-        <ArticleList />
-      </div>
+      <Router>
+        <div className="bigClass">
+          <div>
+            <h2>Main menu</h2>
+            <div>
+              <NavLink activeStyle={{ color: "red" }} to="/counter">
+                Counter
+              </NavLink>
+            </div>
+            <div>
+              <NavLink activeStyle={{ color: "red" }} to="/filters">
+                Filters
+              </NavLink>
+            </div>
+            <div>
+              <NavLink activeStyle={{ color: "red" }} to="/articles">
+                Articles
+              </NavLink>
+            </div>
+          </div>
+          <UserForm />
+          <Route path="/counter" component={Counter} />
+          <Route path="/filters" component={Filters} />
+          <Route path="/articles" component={ArticleList} />
+        </div>
+      </Router>
     );
   }
   // changeSelection = selection => this.setState({ selection });
