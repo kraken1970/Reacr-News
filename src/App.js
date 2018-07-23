@@ -1,13 +1,18 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ArticleList from "./news/components/routes/Articles";
-// import ArticlesChart from "./news/components/ArticlesChart";
+import NewArticle from "./news/components/routes/NewArticle";
+import NotFound from "./news/components/routes/NotFound";
 import UserForm from "./news/components/UserForm";
-// import Select from "react-select";
 import Filters from "./news/components/Filters";
 import Counter from "./news/components/Counter";
 import "react-select/dist/react-select.css";
-import { HashRouter as Router, Route, NavLink } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink
+} from "react-router-dom";
 import "./App.css";
 
 class App extends Component {
@@ -36,9 +41,13 @@ class App extends Component {
             </div>
           </div>
           <UserForm />
-          <Route path="/counter" component={Counter} />
-          <Route path="/filters" component={Filters} />
-          <Route path="/articles" component={ArticleList} />
+          <Switch>
+            <Route path="/counter" component={Counter} />
+            <Route path="/filters" component={Filters} />
+            <Route path="/articles/new" component={NewArticle} />
+            <Route path="/articles" component={ArticleList} />
+            <Route path="*" component={NotFound} />
+          </Switch>
         </div>
       </Router>
     );
