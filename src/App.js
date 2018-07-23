@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import ArticleList from "./news/components/ArticleList";
+import ArticleList from "./news/components/routes/Articles";
 // import ArticlesChart from "./news/components/ArticlesChart";
 import UserForm from "./news/components/UserForm";
 // import Select from "react-select";
 import Filters from "./news/components/Filters";
 import Counter from "./news/components/Counter";
+import "react-select/dist/react-select.css";
 import { HashRouter as Router, Route, NavLink } from "react-router-dom";
 import "./App.css";
 
@@ -42,7 +43,6 @@ class App extends Component {
       </Router>
     );
   }
-  // changeSelection = selection => this.setState({ selection });
 }
 
 export default App;
