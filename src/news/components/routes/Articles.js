@@ -19,8 +19,6 @@ class Articles extends Component {
 
   getArticle = ({ match }) => {
     const { id } = match.params;
-    // console.log("----", match, match.isExact);
-
     return <Article id={id} isOpen key={id} />;
   };
 
