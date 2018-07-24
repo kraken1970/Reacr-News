@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import ArticleList from "./news/components/routes/Articles";
 import NewArticle from "./news/components/routes/NewArticle";
 import NotFound from "./news/components/routes/NotFound";
+import CommentsPage from "./news/components/routes/CommentsPage";
 import UserForm from "./news/components/UserForm";
 import Filters from "./news/components/Filters";
 import Counter from "./news/components/Counter";
@@ -46,6 +47,7 @@ class App extends Component {
             <Route path="/filters" component={Filters} />
             <Route path="/articles/new" component={NewArticle} />
             <Route path="/articles" component={ArticleList} />
+            <Route path="/comments/:page" component={CommentsPage} />
             <Route path="*" component={NotFound} />
           </Switch>
         </div>
