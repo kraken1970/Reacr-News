@@ -8,13 +8,9 @@ import UserForm from "./news/components/UserForm";
 import Filters from "./news/components/Filters";
 import Counter from "./news/components/Counter";
 import "react-select/dist/react-select.css";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-  NavLink
-} from "react-router-dom";
+import { Switch, Route, Redirect, NavLink } from "react-router-dom";
+import { ConnectedRouter } from "react-router-redux";
+import history from "./news/history";
 import "./App.css";
 
 class App extends Component {
@@ -22,7 +18,7 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
+      <ConnectedRouter history={history}>
         <div className="bigClass">
           <div>
             <h2>Main menu</h2>
@@ -53,7 +49,7 @@ class App extends Component {
             <Route path="*" component={NotFound} />
           </Switch>
         </div>
-      </Router>
+      </ConnectedRouter>
     );
   }
 }
