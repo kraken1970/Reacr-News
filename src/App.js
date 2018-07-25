@@ -12,6 +12,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
   NavLink
 } from "react-router-dom";
 import "./App.css";
@@ -47,7 +48,8 @@ class App extends Component {
             <Route path="/filters" component={Filters} />
             <Route path="/articles/new" component={NewArticle} />
             <Route path="/articles" component={ArticleList} />
-            <Route path="/comments/:page" component={CommentsPage} />
+            <Route path="/comments" component={CommentsPage} />
+            {/* <Redirect from="/comments/" to="/comments/1" /> */}
             <Route path="*" component={NotFound} />
           </Switch>
         </div>
