@@ -8,6 +8,12 @@ import { loadArticleComments } from "../AC";
 import { connect } from "react-redux";
 
 class CommentList extends Component {
+  static contextTypes = {
+    store: PropTypes.object,
+    router: PropTypes.object,
+    user: PropTypes.string
+  };
+
   componentWillReceiveProps({ isOpen, article, loadArticleComments }) {
     if (
       !this.props.isOpen &&
@@ -21,9 +27,11 @@ class CommentList extends Component {
 
   render() {
     const { article, isOpen, toggleOpen } = this.props;
+    console.log("..context-1010-", this.context);
     const text = isOpen ? "hide comments" : "show comments";
     return (
       <div>
+        <h3>User: {this.context.user}</h3>
         <button onClick={toggleOpen}>{text}</button>
         {getBody({ article, isOpen })}
       </div>
@@ -70,5 +78,7 @@ function getBody({
 
 export default connect(
   null,
-  { loadArticleComments }
+  { loadArticleComments },
+  null,
+  { pure: false }
 )(toggleOpen(CommentList));

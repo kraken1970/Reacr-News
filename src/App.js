@@ -16,6 +16,20 @@ import "./App.css";
 class App extends Component {
   static propTypes = {};
 
+  static childContextTypes = {
+    user: PropTypes.string
+  };
+
+  getChildContext() {
+    return {
+      user: this.state.username
+    };
+  }
+
+  state = {
+    username: ""
+  };
+
   render() {
     return (
       <ConnectedRouter history={history}>
@@ -38,7 +52,10 @@ class App extends Component {
               </NavLink>
             </div>
           </div>
-          <UserForm />
+          <UserForm
+            value={this.state.username}
+            onChange={this.handleUserChange}
+          />
           <Switch>
             <Route path="/counter" component={Counter} />
             <Route path="/filters" component={Filters} />
@@ -52,6 +69,8 @@ class App extends Component {
       </ConnectedRouter>
     );
   }
+
+  handleUserChange = username => this.setState({ username });
 }
 
 export default App;
