@@ -12,6 +12,7 @@ import {
   LOAD_ARTICLE_COMMENTS,
   LOAD_COMMENTS_FOR_PAGE
 } from "../constans";
+import { push, replace } from "react-router-redux";
 
 // import { callAPI } from "../middlewars/api";
 
@@ -74,54 +75,28 @@ export function loadArticle(id) {
 
     setTimeout(() => {
       fetch(`/api/article/${id}`)
-        .then(res => res.json())
+        .then(res => {
+          if (res.status >= 400) {
+            throw new Error(res.statusText);
+          }
+          return res.json();
+        })
         .then(response =>
           dispatch({
             type: LOAD_ARTICLE + SUCCESS,
             payload: { id, response }
           })
         )
-        .catch(error =>
+        .catch(error => {
           dispatch({
             type: LOAD_ARTICLE + FAIL,
             payload: { id, error }
-          })
-        );
+          });
+          dispatch(replace("/error"));
+        });
     }, 500);
   };
 }
-
-// export function loadArticle(id) {
-//   return dispatch => {
-//     dispatch({
-//       type: LOAD_ARTICLE + START,
-//       payload: { id }
-//     });
-
-//     setTimeout(() => {
-//       fetch(`/api/article/${id}`)
-//         .then(res => {
-//           if (res.status >= 400) {
-//             throw new Error(res.statusText);
-//           }
-//           return res.json();
-//         })
-//         .then(response =>
-//           dispatch({
-//             type: LOAD_ARTICLE + SUCCESS,
-//             payload: { id, response }
-//           })
-//         )
-//         .catch(error => {
-//           dispatch({
-//             type: LOAD_ARTICLE + FAIL,
-//             payload: { id, error }
-//           });
-//           dispatch(replace("/error"));
-//         });
-//     }, 500);
-//   };
-// }
 
 export function checkAndLoadCommentsForPage(page) {
   return (dispatch, getState) => {
