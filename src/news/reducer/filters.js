@@ -4,7 +4,7 @@ import {
   DELETE_ARTICLE
 } from "../constans";
 
-const defaultFilter = {
+const defaultFilters = {
   selected: [],
   dateRange: {
     from: null,
@@ -12,11 +12,12 @@ const defaultFilter = {
   }
 };
 
-export default (filters = defaultFilter, action) => {
+export default (filters = defaultFilters, action) => {
   const { type, payload } = action;
+
   switch (type) {
     case CHANGE_DATE_RANGE:
-      //return Object.assign({}, filters, {dateRange: payload.dateRange})
+      //            return Object.assign({}, filters, { dateRange: payload.dateRange })
       return { ...filters, dateRange: payload.dateRange };
 
     case CHANGE_SELECTION:

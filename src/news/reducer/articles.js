@@ -38,7 +38,7 @@ export default (articleState = defaultState, action) => {
 
     case ADD_COMMENT:
       return articleState.updateIn(
-        ["entities", payload.article.id, "comments"],
+        ["entities", payload.articleId, "comments"],
         comments => comments.concat(randomId)
       );
 
@@ -47,7 +47,9 @@ export default (articleState = defaultState, action) => {
 
     case LOAD_ALL_ARTICLES + SUCCESS:
       return articleState
-        .set("entities", arrToMap(response, ArticleRecord))
+        .update("entities", entities =>
+          arrToMap(response, ArticleRecord).merge(entities)
+        )
         .set("loading", false)
         .set("loaded", true);
 
@@ -70,9 +72,6 @@ export default (articleState = defaultState, action) => {
       return articleState
         .setIn(["entities", payload.articleId, "commentsLoading"], false)
         .setIn(["entities", payload.articleId, "commentsLoaded"], true);
-
-    default:
-      console.log("type:", type);
   }
 
   return articleState;

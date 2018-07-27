@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addComment } from "../../AC";
+import LocalizedText from "../LocalizedText";
 import "./style.css";
 
 class CommentForm extends Component {
@@ -18,19 +19,21 @@ class CommentForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        user:{" "}
+        <LocalizedText>User :</LocalizedText>
         <input
           value={this.state.user}
           onChange={this.handleChange("user")}
           className={this.getClassName("user")}
         />
-        comment:{" "}
+        <LocalizedText>comment:</LocalizedText>
         <input
           value={this.state.text}
           onChange={this.handleChange("text")}
           className={this.getClassName("text")}
         />
-        <input type="submit" value="submit" />
+        <button type="submit" value="submit">
+          <LocalizedText>submit</LocalizedText>
+        </button>
       </form>
     );
   }

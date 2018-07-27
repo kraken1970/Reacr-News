@@ -1,4 +1,3 @@
-//HT 2
 import React from "react";
 
 export default Component =>
